@@ -20,9 +20,9 @@ export const subscribeToCommunity = async (
   req: TypedRequestBody<any>,
   res: Response
 ) => {
-  const community = await Community.findOne({ name: req.body.name });
-  const profile = await Profile.findOne();
-  ProfileCommunity.create({ community, profile });
+  const profile :any = await Profile.findOne({_id: req.body.profile_id})
+  profile.communities.push(req.body.community_id)
+  await profile.save();
 
   res.send({
     status: 200,

@@ -5,5 +5,6 @@ const profile = new mongoose.Schema({
   lastName: String,
   email: String,
   interests: [{ value: String }],
+  communities: [{ type: mongoose.Types.ObjectId, ref: "Community" }],
 });
 export const Profile = mongoose.model("Profile", profile);
